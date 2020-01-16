@@ -1,2 +1,8 @@
-job:
-    script: /bin/echo "Hello there"
+stages:
+    - test
+
+test_unit:
+    stage: test
+    image: dockerlenny/blog_php
+    before_script: composer install
+    script: bin/phpunit
