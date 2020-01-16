@@ -1,6 +1,7 @@
 stages:
     - test
     - deploy
+    - diff
 
 test_unit:
     stage: test
@@ -19,3 +20,9 @@ heroku:
     only: 
         - master
     when: on_success
+
+hadolint:
+    stage: diff
+    image: hadolint/hadolint
+    script:
+        - hadolint Dockerfile
