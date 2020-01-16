@@ -14,7 +14,7 @@ RUN apk add --update --no-cache acl=2.2.53-r0 \
   make=4.2.1-r2 \
   pkgconf=1.6.3-r0 \
   postgresql-dev=12.1-r0 \
-  re2c=1.3-r0
+  re2c
 RUN docker-php-ext-install intl pdo pdo_pgsql pgsql
 
 COPY .docker/php/entrypoint.sh /usr/local/bin/docker-entrypoint
