@@ -1,0 +1,11 @@
+stages:
+    - test
+
+test_unit:
+    stage: test
+    image: dockerlennyy/blog_php
+    before_script: 
+        - composer install
+    script: bin/phpunit
+    only:
+        - master
