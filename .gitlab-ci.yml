@@ -1,7 +1,7 @@
 stages:
     - test
 
-test_unit:
+test_unit:only:master
     stage: test
     image: dockerlennyy/blog_php
     before_script: 
