@@ -1,2 +1,2 @@
 job:1
-	script: /bin/echo "Hello there"
+    script: /bin/echo "Hello there"
