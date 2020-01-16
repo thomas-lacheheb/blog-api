@@ -1,5 +1,6 @@
 stages:
     - test
+    - deploy
 
 test_unit:
     stage: test
@@ -7,5 +8,14 @@ test_unit:
     before_script: 
         - composer install
     script: bin/phpunit
-    only:
+
+heroku:
+    stage: deploy
+    image: ruby
+    before_script:
+        - gem install dpl
+    script:
+        - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_STAGING_API_KEY
+    only: 
         - master
+    when: on_success
