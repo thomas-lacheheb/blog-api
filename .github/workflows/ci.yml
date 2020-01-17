@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     container: tlacheheb/blog_php
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
       - name: install composer package
         run: composer install
       - name: start test
