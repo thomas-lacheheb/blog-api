@@ -24,13 +24,21 @@ jobs:
         run: composer install
       - name: start test
         run: bin/phpunit
-  
-  heroku:
-    name: deploy
-    container: ruby
+
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: install dpl
-        run: sudo gem install dpl
-      - name: start dpl
-        run: sudo dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: deploy site
+      env:
+        app_heroku: ${{ secrets.HEROKU_STAGING_API_KEY }}
+        token_heroku: ${{ secrets.HEROKU_STAGING_API_KEY }}
+      run: |
+        sudo apt-get update -qy
+        sudo apt-get install -yqq ruby ruby-dev nodejs --silent
+        sudo gem install dpl
+        sudo dpl --provider=heroku --app=$app_heroku --api-key=$token_heroku
