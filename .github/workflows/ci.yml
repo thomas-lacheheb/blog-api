@@ -33,4 +33,4 @@ jobs:
       - name: install dpl
         run: gem install dpl
       - name: start dpl
-        run: dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_STAGING_API_KEY
+        run: dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
