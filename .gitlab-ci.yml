@@ -5,7 +5,7 @@ stages:
 
 test_unit:
     stage: test
-    image: dockerlennyy/blog_php
+    image: tlacheheb/blog_php
     before_script: 
         - composer install
     script: bin/phpunit
