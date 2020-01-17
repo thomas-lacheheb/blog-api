@@ -31,6 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install dpl
-        run: gem install dpl
+        run: sudo gem install dpl
       - name: start dpl
-        run: dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
+        run: sudo dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
