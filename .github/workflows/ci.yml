@@ -38,5 +38,7 @@ jobs:
         app_name_heroku: ${{ secrets.HEROKU_APP }}
         token_heroku: ${{ secrets.HEROKU_STAGING_API_KEY }}
       run: |
-        gem install dpl
-        dpl --provider=heroku --app=$app_name_heroku --api-key=$token_heroku
+        sudo apt-get update -qy
+        sudo apt-get install -yqq ruby ruby-dev nodejs --silent
+        sudo gem install dpl
+        sudo dpl --provider=heroku --app=$app_name_heroku --api-key=$token_heroku
