@@ -24,3 +24,13 @@ jobs:
         run: composer install
       - name: start test
         run: bin/phpunit
+  
+  hadolint:
+    name: deploy
+    container: ruby
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dpl
+        run: gem install dpl
+      - name: start dpl
+        run: dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_STAGING_API_KEY
