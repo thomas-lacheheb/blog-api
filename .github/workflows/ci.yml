@@ -25,20 +25,17 @@ jobs:
         run: composer install
       - name: Run unit tests
         run: php bin/phpunit
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Set up Ruby 2.6
-  #     uses: actions/setup-ruby@v1
-  #     with:
-  #       ruby-version: 2.6.x
-  #   - name: deploy site
-  #     env:
-  #       app_name_heroku: ${{ secrets.HEROKU_APP }}
-  #       token_heroku: ${{ secrets.HEROKU_STAGING_API_KEY }}
-  #     run: |
-  #       sudo apt-get update -qy
-  #       sudo apt-get install -yqq ruby ruby-dev nodejs --silent
-  #       sudo gem install dpl
-  #       sudo dpl --provider=heroku --app=$app_name_heroku --api-key=$token_heroku
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.6.x
+    - name: deploy site
+      run: |
+        sudo apt-get update -qy
+        sudo apt-get install -yqq ruby ruby-dev nodejs --silent
+        sudo gem install dpl
+        sudo dpl --provider=heroku --app=${{ secrets.HEROKU_APP }} --api-key=${{ secrets.HEROKU_STAGING_API_KEY }}
